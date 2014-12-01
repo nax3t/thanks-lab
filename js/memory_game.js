@@ -4,6 +4,10 @@ memory_values = [],
 memory_tile_ids = [],
 tiles_flipped = 0;
 
+// Score tracker
+var	winCount = 0;
+document.getElementById('wins').innerHTML = "Wins:" + winCount;
+
 // Shuffle function
 Array.prototype.memory_tile_shuffle = function(){
     var i = this.length, j, temp;
@@ -50,8 +54,10 @@ function memoryFlipTile(tile,val){
             	memory_tile_ids = [];
 				// Check to see if the whole board is cleared
 				if(tiles_flipped == memory_array.length){
-					alert("Board cleared... generating new board");
+					winCount++;
+					alert("You win! Click OK to generate a new board");
 					document.getElementById('memory_board').innerHTML = "";
+					document.getElementById('wins').innerHTML = "Wins:" + winCount;
 					newBoard();
 				}
 			} else {
